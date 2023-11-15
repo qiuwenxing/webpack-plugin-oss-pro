@@ -17,7 +17,7 @@ npm i webpack-plugin-oss-pro -D
 - accessKeyId: 必传。阿里云的授权 accessKeyId
 - accessKeySecret: 必传。阿里云的授权 accessKeySecret
 - bucket: 必传。上传到哪个 bucket
-- from: 必传。上传哪些文件，支持类似 gulp.src 的 glob 方法，如'./build/\*\*', 为 glob 字符串。默认./dist/img/**
+- from: 必传。上传哪些文件，支持类似 gulp.src 的 glob 方法，如'./build/\*\*', 为 glob 字符串。默认./dist/img/\*\*
 - dist: 上传到 oss 哪个目录下，默认为 oss 根目录。可作为路径前缀使用。
 - timeout: oss 超时设置，默认为 30 秒(30000)
 - overwrite: 是否覆盖 oss 同名文件。默认 true。
@@ -45,7 +45,7 @@ module.exports = defineConfig({
       // 打包时才加载插件
       prod &&
         new WebpackPluginOssPro({
-          cdnHost: "https://cdn.xxx.com",//设置cdn域名
+          cdnHost: "https://cdn.xxx.com", //设置cdn域名
           from: "./dist/img/**", // 需要上传到oss的文件夹
           dist: "static", // 需要上传到oss上的给定文件目录
           region: "oss-xx-xx-1",
@@ -68,15 +68,17 @@ const prod = process.env.NODE_ENV === "production";
 
 module.exports = {
   plugins: [
-    new WebpackPluginOssPro({
-      cdnHost: "https://cdn.xxx.com",// 设置cdn域名
-      from: "./dist/img/**", // 上传那个文件或文件夹
-      dist: "static", // 需要上传到oss上的给定文件目录
-      region: "oss-xx-xx-1",
-      accessKeyId: "xxxxxxxxxxxx",
-      accessKeySecret: "xxxxxxxxxxxx",
-      bucket: "xxxxxxxxx",
-    }),
-  ],
+    // 打包时才加载插件
+    prod &&
+      new WebpackPluginOssPro({
+        cdnHost: "https://cdn.xxx.com", // 设置cdn域名
+        from: "./dist/img/**", // 上传那个文件或文件夹
+        dist: "static", // 需要上传到oss上的给定文件目录
+        region: "oss-xx-xx-1",
+        accessKeyId: "xxxxxxxxxxxx",
+        accessKeySecret: "xxxxxxxxxxxx",
+        bucket: "xxxxxxxxx",
+      }),
+  ].filter(Boolean),
 };
 ```
