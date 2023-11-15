@@ -3,7 +3,6 @@ import fs from 'fs'
 import OSS from 'ali-oss'
 import globby from 'globby'
 import Listr from 'listr'
-import { glob } from 'glob'
 import 'colors'
 import { PluginOptions, defaultOption } from './type'
 
@@ -320,38 +319,6 @@ class WebpackPluginOssPro {
     }
 
     return errStr;
-  }
-  //替换cdn地址
-  async writeBundle() {
-    const { cdnHost, fileSuffix, dist } = this.config
-    if (cdnHost) {
-      const suffix = fileSuffix || _fileSuffix
-      const url = new URL(dist || '', cdnHost)
-      const cdnBaseUrl = url.href
-      console.log('cdnBaseUrl:', cdnBaseUrl);
-      const regExp = new RegExp(`(img\/[A-Za-z0-9_.-]+\.(${suffix.join('|')}))`, 'ig')
-      console.log('RegExp:', regExp)
-      // 获取构建后的文件列表
-      const fileList = await glob.sync('./dist/**/*.{js,css,html}')
-      // 遍历文件列表
-      fileList.forEach((filePath) => {
-        // 读取文件内容
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
-
-        // 查找并替换所有引用的图片路径
-        const newFileContent = fileContent.replace(regExp, `${cdnBaseUrl}/$1`)
-
-        fileContent.match(regExp)?.forEach(item => {
-          console.log(item);
-        })
-
-        // 写入修改后的文件内容
-        fs.writeFileSync(filePath, newFileContent, 'utf-8')
-      })
-
-      return true
-    }
-    return false
   }
 }
 

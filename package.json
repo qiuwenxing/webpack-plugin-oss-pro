@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-oss-pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个可以将打包好的资源文件上传到阿里云OSS并且修改代码中资源文件CND地址的Webpack插件",
   "author": "qiu <727091090@qq.com>",
   "main": "./dist/index.js",
@@ -30,7 +30,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/ali-oss": "^6.16.2",
-    "@types/glob": "^7.2.0",
     "@types/listr": "^0.14.8",
     "@types/node": "^16.18.61",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -42,7 +41,6 @@
     "ali-oss": "^6.16.0",
     "colors": "^1.4.0",
     "fs-extra": "^8.1.0",
-    "glob": "^7.2.0",
     "globby": "^10.0.1",
     "listr": "^0.14.3"
   }
