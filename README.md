@@ -4,6 +4,9 @@
 
 本插件基于`webpack5`实现，使用时请检查`webpack`或`@vue/cli-service`版本是否`>=5`
 
+传送门
+[vite版](https://github.com/qiuwenxing/vite-plugin-oss-pro)
+
 # Install 安装
 
 ```

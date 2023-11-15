@@ -19,6 +19,10 @@ export type OSSOptions = {
 
 export type OptionalOptions = {
   /**
+  * 上传后要替换的资源文件CDN域名
+  */
+  cdnHost: string
+  /**
    * 上传哪些文件，支持类似gulp.src的glob方法，如'./build/**', 为glob字符串，默认./dist/img/**
    */
   from: string
@@ -60,10 +64,6 @@ export type OptionalOptions = {
    * 并发数
    */
   parallel: number
-  /**
-   * 上传后要替换的资源文件CDN域名
-   */
-  cdnHost?: string
   /**
    * 需要上传的文件后缀，默认['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'ico', 'bmp', 'webm', 'avi', 'mp4', 'mp3', 'flv', 'mov']
    */
